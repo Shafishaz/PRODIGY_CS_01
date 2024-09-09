@@ -1,48 +1,55 @@
-def caesar_cipher(text, shift, mode='encrypt'):
-    """
-    Encrypts or decrypts a text using the Caesar Cipher algorithm.
+CAESAR CIPHER ENCRYPTION AND DECRYPTION
 
-    :param text: The input text to encrypt or decrypt.
-    :param shift: The shift value for the Caesar Cipher.
-    :param mode: The mode of operation ('encrypt' or 'decrypt').
-    :return: The encrypted or decrypted text.
-    """
-    # Ensure shift is in the range 0-25
-    shift = shift % 26
+-Overview
 
-    # If mode is decrypt, reverse the shift
-    if mode == 'decrypt':
-        shift = -shift
+The Caesar Cipher is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher where each letter in the plaintext is shifted a certain number of places down or up the alphabet. This method was named after Julius Caesar, who used it in his private correspondence.
 
-    result = ""
+-How It Works
 
-    for char in text:
-        if char.isalpha():
-            # Shift uppercase and lowercase characters separately
-            base = ord('A') if char.isupper() else ord('a')
-            # Shift the character and wrap around using modulo
-            result += chr((ord(char) - base + shift) % 26 + base)
-        else:
-            # Leave non-alphabet characters unchanged
-            result += char
+The Caesar Cipher works by shifting the position of each letter in the plaintext by a fixed number of places determined by the shift value. For example, with a shift of 3:
 
-    return result
+A becomes D
 
+B becomes E
 
-def main():
-    # Get user input
-    text = input("Enter your message: ")
-    shift = int(input("Enter the shift value (0-25): "))
-    mode = input("Do you want to 'encrypt' or 'decrypt' the message? ").strip().lower()
+C becomes F
 
-    if mode not in ['encrypt', 'decrypt']:
-        print("Invalid mode selected. Please choose 'encrypt' or 'decrypt'.")
-        return
+and so on...
 
-    # Perform encryption or decryption
-    result = caesar_cipher(text, shift, mode)
-    print(f"The result is: {result}")
+If the shift moves past the end of the alphabet, it wraps around to the beginning. For example, with a shift of 3:
 
+X becomes A
 
-if __name__ == "__main__":
-    main()
+Y becomes B
+
+Z becomes C
+
+The same shift value used for encryption can be used in reverse to decrypt the message.
+
+-Features
+
+Encrypt Text: Convert plaintext into ciphertext by shifting the characters.
+
+Decrypt Text: Convert ciphertext back into plaintext using the same shift value.
+
+Case Sensitivity: Maintains the case of the original text (i.e., uppercase and lowercase letters are treated separately).
+
+Non-alphabetic Characters: Leaves non-alphabetic characters (e.g., spaces, punctuation) unchanged.
+
+-How to Use
+
+Encrypt a Message:
+
+Input the message you want to encrypt.
+
+Provide a shift value (integer) to determine the number of positions each character will be shifted.
+
+The program outputs the encrypted message.
+
+Decrypt a Message:
+
+Input the message you want to decrypt.
+
+Provide the same shift value used for encryption.
+
+The program outputs the decrypted message.
